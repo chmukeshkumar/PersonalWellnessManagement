@@ -15,34 +15,19 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package pwm.mdp;
-
-import pwm.mdp.solver.State;
-import pwm.mdp.solver.TerminalFunction;
-import pwm.participant.PWMParticipantInfo;
+package pwm.mdp.solver;
 
 /**
  *
  * @author mchippa
  */
-public class PWMTerminalStateMapper implements TerminalFunction {
-    private final PWMParticipantInfo participant;
+class StateActionTuple {
+    State state;
+    Action action;
     
-    PWMTerminalStateMapper(PWMParticipantInfo participant) {
-        this.participant = participant;
-    }
-    
-    /**
-     *
-     * @param s
-     * @return
-     */
-    @Override
-    public boolean isTerminal(State s) {
-       if(s.getValue() < participant.getTargetWeight()) {
-           return true;
-       }
-       return false;
+    StateActionTuple(State s, Action a ) {
+        this.state = s;
+        this.action = a;
     }
     
 }

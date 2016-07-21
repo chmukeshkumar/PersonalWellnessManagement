@@ -1,11 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright (C) 2016 mchippa
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package pwm.mdp.solver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +39,13 @@ public class MDPSolver {
     
     private double gamma = 0;
     
+    /**
+     *
+     * @param stateSpace
+     * @param actionSpace
+     * @param rewardFunction
+     * @param terminalFunction
+     */
     public MDPSolver(Map<String,State> stateSpace, Map<String,Action> actionSpace, RewardFunction rewardFunction, TerminalFunction terminalFunction) {
         this.stateSpace = stateSpace;
         this.actionSpace = actionSpace;
@@ -36,7 +56,14 @@ public class MDPSolver {
         transitionDynamics = new HashMap<State, List<ActionTransitions> >();
     }
 
-    public void runVI(int maxIterations, double maxDelta, double gamma) {
+    /**
+     *
+     * @param maxIterations
+     * @param maxDelta
+     * @param gamma
+     * @return
+     */
+    public MDPPolicy runVI(int maxIterations, double maxDelta, double gamma) {
         this.gamma = gamma;
 //        performReachabilityAnalysis();
         for(int i=0;i<=maxIterations;i++) {
@@ -52,6 +79,19 @@ public class MDPSolver {
                 break;
             }
         }
+        MDPPolicy policy = new MDPPolicy();
+        for(Map.Entry<String,State> entry : stateSpace.entrySet() ) {
+            State s = entry.getValue();
+            Map<Action,Double> actionValues = s.getActionValues();
+            double maxValue = Collections.max(actionValues.values());
+            for(Map.Entry<Action,Double> e : actionValues.entrySet()) {
+                if(e.getValue() == maxValue) {
+                    StateActionTuple sat = new StateActionTuple(s,e.getKey());
+                    policy.addStateActionTuple(sat);
+                }
+            }
+        }
+        return policy;
     }
     
     
@@ -90,6 +130,7 @@ public class MDPSolver {
         List<ActionTransitions> transitions = this.getActionTransitions(s);
         for(ActionTransitions at : transitions ) { 
             double q = this.computeQ(s, at);
+            s.addActionValue(at.action,q);
             if(q > maxQ ) {
                 maxQ = q;
             }
