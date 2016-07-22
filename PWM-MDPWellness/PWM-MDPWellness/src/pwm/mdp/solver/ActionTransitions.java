@@ -1,19 +1,29 @@
-/* 
- * Copyright (C) 2016 mchippa
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+/*
+ * /*
+ *  * Copyright (c) 2006-2011 The University of Akron.
+ *  * All rights reserved.
+ *  *
+ *  * Permission to use and copy this software and its documentation for educational
+ *  * purposes only, without fee, and without written agreement is hereby granted,
+ *  * provided that the above copyright notice, the following two paragraphs, and
+ *  * acknowledgment of the authors appear in all copies of this software.
+ *  *
+ *  * IN NO EVENT SHALL THE UNIVERSITY OF AKRON BE LIABLE TO ANY PARTY FOR DIRECT,
+ *  * INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+ *  * USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF AKRON
+ *  * HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *  *
+ *  * THE UNIVERSITY OF AKRON SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING,
+ *  * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  * A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON AN "AS IS" BASIS,
+ *  * AND THE UNIVERSITY OF AKRON HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+ *  * UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+ *  * 
+ *  * Contributing Authors: 
+ *  *    Mukesh Kumar Chippa
+ *  *    Shivakumar Sastry
+ *  *    10, September, 2011
+ *  * 
  */
 package pwm.mdp.solver;
 
