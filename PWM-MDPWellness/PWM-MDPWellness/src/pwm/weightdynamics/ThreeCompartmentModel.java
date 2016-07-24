@@ -22,7 +22,7 @@
  *  * Contributing Authors: 
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
- *  *    10, September, 2011
+ *  *    
  *  * 
  */
 package pwm.weightdynamics;
@@ -35,8 +35,8 @@ import org.apache.commons.math3.ode.FirstOrderIntegrator;
 import org.apache.commons.math3.ode.nonstiff.ClassicalRungeKuttaIntegrator;
 
 /**
- *
- * @author munna
+ * The three compartment human weight dynamics model developed by NIDDHK. 
+ * 
  */
 public class ThreeCompartmentModel implements FirstOrderDifferentialEquations {
     private double Ginit = 0.5;
@@ -75,6 +75,16 @@ public class ThreeCompartmentModel implements FirstOrderDifferentialEquations {
     
     private int timeStep;
     
+    /**
+     *
+     * @param currentWeight The Participant current Weight in KG's
+     * @param height        The participant current height in meters
+     * @param age           The participant current age     in years
+     * @param gender        Participant Gender (Male / Female )
+     * @param pal_init      The participant current exercise activity level ( 1.0 - 3.0 )
+     *                      1.0 - No physical activity 
+     *                      2.0 - High Intensity physical activity 3-4 times a week
+     */
     public ThreeCompartmentModel(int currentWeight, double height, double age, String gender, double pal_init)    {
         this.initialWeight = currentWeight;
         this.ciFraction = 0.5;
@@ -92,18 +102,40 @@ public class ThreeCompartmentModel implements FirstOrderDifferentialEquations {
         updateK();
     }
     
+    /**
+     *
+     * @return the total number of variables in this model
+     */
+    @Override
     public int getDimension() {
         return 5;
     }
     
+    /**
+     *
+     * @return the time step in days that the model uses to estimate the participant
+     *         weight after. 
+     */
     public int getTimeStep() {
         return this.timeStep;
     }
     
+    /**
+     *
+     * @param time set the time in days to estimate the participant weight after
+     */
     public void setTimeStep(int time) {
         this.timeStep = time;
     }
 
+    /**
+     *
+     * @param t
+     * @param y
+     * @param yDot
+     * @throws MaxCountExceededException
+     * @throws DimensionMismatchException
+     */
     @Override
     public void computeDerivatives(double t, double[] y, double[] yDot) throws MaxCountExceededException, DimensionMismatchException {
         double bodyWeight = y[0] + y[1] + y[2] + y[3];
@@ -198,7 +230,12 @@ public class ThreeCompartmentModel implements FirstOrderDifferentialEquations {
         return delta;
     }
     
-    public double getRMR(double weight)
+    /**
+     *
+     * @param weight
+     * @return
+     */
+    double getRMR(double weight)
     {
         double rmr = 0;
         if(gender.contains("F"))
@@ -213,11 +250,20 @@ public class ThreeCompartmentModel implements FirstOrderDifferentialEquations {
         return rmr;
     }
     
+    /**
+     *
+     * @param currentCalories A list of daily calories that the participant is supposed to eat.
+     * @param pal_final A list of daily physical activity level that the participant should be exercising at. 
+     */
     public void setCurrentParameters(ArrayList<Double> currentCalories, ArrayList<Double> pal_final) {
         this.currentCalories = currentCalories;
         this.pal_final = pal_final;
     }
 
+    /**
+     *
+     * @return the participant final weight at the end of time_step, as calculated by the model.
+     */
     public int getFinalWeight() {
         double[] y = new double[]{0.5,this.getInitialECF(),this.getInitialFatMass(),this.getInitialLeanMass(),0};
         FirstOrderIntegrator integrator = new ClassicalRungeKuttaIntegrator(0.1);

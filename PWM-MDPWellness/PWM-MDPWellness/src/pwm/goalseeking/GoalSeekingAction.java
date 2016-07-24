@@ -23,19 +23,20 @@
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
  *  *    
- *  * 
  */
-package pwm.mdp;
+package pwm.goalseeking;
 
-import pwm.mdp.solver.State;
+import pwm.mdp.PWMAction;
+import pwm.participant.PWMParticipantInfo;
 
 /**
  *
- * @author mchippa
+ * @author munna
  */
-public class PWMState extends State {
-    
-    PWMState(int value) { 
-        super(value);
+public class GoalSeekingAction extends PWMAction {
+
+    public GoalSeekingAction(PWMParticipantInfo participant, String name, double nutritionCalories, double exerciseCalories) {
+        super(participant, name, nutritionCalories, exerciseCalories);
     }
+    
 }

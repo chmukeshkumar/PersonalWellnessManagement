@@ -22,7 +22,7 @@
  *  * Contributing Authors: 
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
- *  *    10, September, 2011
+ *  *    
  *  * 
  */
 package pwm.mdp;
@@ -41,25 +41,50 @@ import pwm.weightdynamics.ThreeCompartmentModel;
  * @author mchippa
  */
 
-class PWMAction extends Action {
+public class PWMAction extends Action {
+
+    /**
+     *
+     */
     public double nutritionCalories;
+
+    /**
+     *
+     */
     public double exerciseCalories;
     
     private Map stateSpace;
     private PWMParticipantInfo participantInfo;
     static int time_step = 21; // days
     
-    PWMAction(PWMParticipantInfo participant, String name, double nutritionCalories, double exerciseCalories) { 
+    /**
+     *
+     * @param participant
+     * @param name
+     * @param nutritionCalories
+     * @param exerciseCalories
+     */
+    public PWMAction(PWMParticipantInfo participant, String name, double nutritionCalories, double exerciseCalories)       { 
         super(name);
         this.participantInfo = participant;
         this.nutritionCalories = nutritionCalories;
         this.exerciseCalories  = exerciseCalories;
     }
     
+    /**
+     *
+     * @param info
+     * @return
+     */
     public double getPAL(PWMParticipantInfo info) { 
         return exerciseCalories/info.getInitialWeight();
     }
     
+    /**
+     *
+     * @param currentWeight
+     * @return
+     */
     protected int estimateActionConsequence(int currentWeight) {
         ThreeCompartmentModel model = new ThreeCompartmentModel(currentWeight,
                                                                 participantInfo.getHeight(),
@@ -114,7 +139,10 @@ class PWMAction extends Action {
         return (State) stateSpace.get(""+weight);
      }
 
-    
+    /**
+     *
+     * @param stateSpace
+     */
     protected void setStateSpace(Map stateSpace) {
         this.stateSpace = stateSpace;
     }
@@ -130,6 +158,4 @@ class PWMAction extends Action {
         } 
         return true;
     }
-    
-    
 }

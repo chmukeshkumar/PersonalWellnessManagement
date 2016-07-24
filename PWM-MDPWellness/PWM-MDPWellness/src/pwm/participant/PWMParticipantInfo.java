@@ -22,7 +22,7 @@
  *  * Contributing Authors: 
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
- *  *    10, September, 2011
+ *  *   
  *  * 
  */
 package pwm.participant;
@@ -33,13 +33,45 @@ package pwm.participant;
  */
 public class PWMParticipantInfo {
     
+    /**
+     *
+     */
     protected int initialWeight;
+
+    /**
+     *
+     */
     protected int targetWeight;
+
+    /**
+     *
+     */
     protected double age; // years 
+
+    /**
+     *
+     */
     protected double height; // in meters
+
+    /**
+     *
+     */
     protected String gender; 
+
+    /**
+     *
+     */
     protected double initialPA;
 
+    /**
+     *
+     * @param initialWeight
+     * @param targetWeight
+     * @param age
+     * @param height
+     * @param gender
+     * @param initialPA
+     */
     public PWMParticipantInfo(int initialWeight, int targetWeight, double age, double height, String gender, double initialPA) {
         this.initialWeight = initialWeight;
         this.targetWeight = targetWeight;
@@ -49,26 +81,50 @@ public class PWMParticipantInfo {
         this.initialPA = initialPA;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTargetWeight() {
         return targetWeight;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getInitialWeight() {
         return initialWeight;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getAge() {
         return age;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getHeight() {
         return height;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getInitialPA() {
         return initialPA;
     }

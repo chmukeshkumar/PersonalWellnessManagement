@@ -23,19 +23,19 @@
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
  *  *    
- *  * 
  */
-package pwm.mdp;
+package pwm.goalseeking;
 
-import pwm.mdp.solver.State;
+import java.util.List;
 
 /**
  *
- * @author mchippa
+ * @author munna
  */
-public class PWMState extends State {
+public interface ReflectionMapper {
     
-    PWMState(int value) { 
-        super(value);
-    }
+    public Consequence estimateConsequence(GoalSeekingAction action);
+    
+    public List<Consequence> estimateConsequence(List<GoalSeekingAction> actions);
+    
 }

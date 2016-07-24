@@ -23,19 +23,10 @@
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
  *  *    
- *  * 
  */
-package pwm.mdp;
+package pwm.visualizer;
 
-import pwm.mdp.solver.State;
 
-/**
- *
- * @author mchippa
- */
-public class PWMState extends State {
+public class PWMMDPPolicyView {
     
-    PWMState(int value) { 
-        super(value);
-    }
 }

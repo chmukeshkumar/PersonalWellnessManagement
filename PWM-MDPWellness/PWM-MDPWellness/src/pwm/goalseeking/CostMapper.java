@@ -23,19 +23,15 @@
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
  *  *    
- *  * 
  */
-package pwm.mdp;
-
-import pwm.mdp.solver.State;
+package pwm.goalseeking;
 
 /**
  *
- * @author mchippa
+ * @author munna
  */
-public class PWMState extends State {
+public interface CostMapper {
     
-    PWMState(int value) { 
-        super(value);
-    }
+    public Cost estimateCost(Consequence c);
+
 }
