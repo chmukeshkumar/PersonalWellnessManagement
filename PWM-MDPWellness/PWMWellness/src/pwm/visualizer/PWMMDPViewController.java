@@ -23,21 +23,36 @@
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
  *  *    
- *  * 
  */
-package pwm.mdp.solver;
+package pwm.visualizer;
 
-/**
- *
- * @author mchippa
- */
-class StateActionTuple {
-    State state;
-    Action action;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import pwm.mdp.PWMMDPModel;
+import pwm.mdp.solver.MDPPolicy;
+import pwm.participant.PWMParticipantInfo;
+
+
+public class PWMMDPViewController {
     
-    StateActionTuple(State s, Action a ) {
-        this.state = s;
-        this.action = a;
+    final PWMMDPModel mdpModel;
+    final PWMMDPView  mdpView;
+
+    public PWMMDPViewController(PWMMDPModel mdpModel, PWMMDPView mdpView) {
+        this.mdpModel = mdpModel;
+        this.mdpView  = mdpView;
+        
+        mdpView.addActionListener(new MDPActionListener());
     }
     
+    class MDPActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            PWMParticipantInfo participantInfo = mdpView.getParticipantInfo();
+            mdpModel.runMDP(participantInfo, null);
+            MDPPolicy policy = mdpModel.getPolicy();
+            mdpView.updatePolicy(policy);
+        }
+    }
 }

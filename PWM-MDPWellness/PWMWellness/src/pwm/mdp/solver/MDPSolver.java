@@ -75,7 +75,7 @@ public class MDPSolver {
      */
     public MDPPolicy runVI(int maxIterations, double maxDelta, double gamma) {
         this.gamma = gamma;
-//        performReachabilityAnalysis();
+
         for(int i=0;i<=maxIterations;i++) {
             System.out.println("Iteration " + i);
             double delta = 0. ;
@@ -93,26 +93,19 @@ public class MDPSolver {
         for(Map.Entry<String,State> entry : stateSpace.entrySet() ) {
             State s = entry.getValue();
             Map<Action,Double> actionValues = s.getActionValues();
-            double maxValue = Collections.max(actionValues.values());
-            for(Map.Entry<Action,Double> e : actionValues.entrySet()) {
-                if(e.getValue() == maxValue) {
-                    StateActionTuple sat = new StateActionTuple(s,e.getKey());
-                    policy.addStateActionTuple(sat);
+            if(actionValues.size() != 0) {
+                double maxValue = Collections.max(actionValues.values());
+                for(Map.Entry<Action,Double> e : actionValues.entrySet()) {
+                    if(e.getValue() == maxValue) {
+                        StateActionTuple sat = new StateActionTuple(s,e.getKey());
+                        policy.addStateActionTuple(sat);
+                    }
                 }
             }
         }
         return policy;
     }
     
-    
-//    private void performReachabilityAnalysis() { 
-//        Map <String,State
-//        for(Map.Entry<String,State> stateEntry : stateSpace.entrySet() ) {
-//            for(Map.Entry<String,Action> actionEntry : actionSpace.entrySet() ) {
-//                if()
-//            }
-//        }
-//    }
     
     private double value(State s ) {
         if(this.terminalFunction.isTerminal(s)) {

@@ -42,6 +42,11 @@ public class MDPPolicy {
         stateActionTuples = new HashMap();
     }
     
+    public Map<String,StateActionTuple> getStateActionTuples() {
+        return this.stateActionTuples;
+    }
+  
+    
     void addStateActionTuple(StateActionTuple sat) {
         this.stateActionTuples.put(sat.state.getDescription(), sat);
     }

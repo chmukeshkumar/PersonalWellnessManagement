@@ -25,28 +25,27 @@
  *  *    
  *  * 
  */
-package pwm.mdp;
-
-import java.util.HashMap;
-import java.util.Map;
+package pwm.mdp.solver;
 
 /**
  *
  * @author mchippa
  */
-public class PWMStateSpace {
-    Map<String, PWMState> stateSpace = new HashMap<String,PWMState> ();
+public class StateActionTuple {
+    State state;
+    Action action;
     
-    Map generateStateSpace(int initialWeight, int finalWeight, int stepSize) {
-        for (int w = finalWeight; w<= initialWeight ; w+=stepSize ) {
-            stateSpace.put(""+w, new PWMState(w));
-        }
-        return stateSpace;
+    StateActionTuple(State s, Action a ) {
+        this.state = s;
+        this.action = a;
     }
     
-    Map<String,PWMState> getStateSpace() {
-        return this.stateSpace;
+    public State getState() {
+        return this.state;
     }
     
+    public Action getAction() {
+        return this.action;
+    }
     
 }

@@ -23,10 +23,30 @@
  *  *    Mukesh Kumar Chippa
  *  *    Shivakumar Sastry
  *  *    
+ *  * 
  */
-package pwm.visualizer;
+package pwm.mdp;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class PWMMDPViewController {
+/**
+ *
+ * @author mchippa
+ */
+public class PWMStateSpace {
+    Map<String, PWMState> stateSpace = new HashMap<String,PWMState> ();
+    
+    Map generateStateSpace(int initialWeight, int finalWeight) {
+        for (int w = finalWeight; w<= initialWeight ; w++ ) {
+            stateSpace.put(""+w, new PWMState(w));
+        }
+        return stateSpace;
+    }
+    
+    Map<String,PWMState> getStateSpace() {
+        return this.stateSpace;
+    }
+    
     
 }
