@@ -49,7 +49,7 @@ public class PWMTerminalStateMapper implements TerminalFunction {
      */
     @Override
     public boolean isTerminal(State s) {
-       if(s.getValue() < participant.getTargetWeight()) {
+       if(s.getValue() <= participant.getTargetWeight()) {
            return true;
        }
        return false;

@@ -30,6 +30,7 @@ class ParticipantInfoPanel extends JPanel {
 
     
     public ParticipantInfoPanel() {
+        super();
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.insets=new Insets(5, 5, 5, 5);
@@ -105,7 +106,7 @@ class ParticipantInfoPanel extends JPanel {
            double currentPAl    = Double.valueOf(this.currentPAL.getText());
            double targetWeight  = Double.valueOf(this.targetWeight.getText());
            
-           double height = height_feet + height_inches*0.83333;
+           double height = (height_feet*12 + height_inches)*0.0254;
            
            PWMParticipantInfo participant = new PWMParticipantInfo((int)currentWeight, (int)targetWeight, age, height, gender, currentPAl);
            return participant;

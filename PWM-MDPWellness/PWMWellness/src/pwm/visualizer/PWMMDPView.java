@@ -8,7 +8,8 @@ package pwm.visualizer;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.event.ChangeListener;
+import pwm.mdp.MDPModelParams;
 import pwm.mdp.solver.MDPPolicy;
 import pwm.participant.PWMParticipantInfo;
 
@@ -20,15 +21,18 @@ public class PWMMDPView extends JFrame{
     
     ParticipantInfoPanel participantInfoPanel;
     MDPPolicyPanel mdpPolicyPanel;
+    ModelControlPanel controlPanel;
     
     public PWMMDPView() {
         this.setTitle("Personal Wellness Management - MDP Formulation");
         this.participantInfoPanel = new ParticipantInfoPanel();
         this.mdpPolicyPanel = new MDPPolicyPanel();
+        this.controlPanel   = new ModelControlPanel();
         
         this.setLayout(new BorderLayout());
         this.add(this.participantInfoPanel,BorderLayout.WEST);
         this.add(this.mdpPolicyPanel,BorderLayout.CENTER);
+        this.add(this.controlPanel,BorderLayout.SOUTH);
         
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,14 +42,34 @@ public class PWMMDPView extends JFrame{
     void addActionListener(ActionListener mdpActionListener) {
         participantInfoPanel.addActionListener(mdpActionListener);
     }
+     void addChangeListener(ChangeListener listener) {
+        controlPanel.addChangeListener(listener);
+    }
+    
+    
+    void addModelParamsChangeListener(ChangeListener listener) {
+        controlPanel.addChangeListener(listener);
+    }
 
     PWMParticipantInfo getParticipantInfo() {
         PWMParticipantInfo participantInfo = participantInfoPanel.getParticipantInfo();
         return participantInfo;
     }
 
-    void updatePolicy(MDPPolicy policy) {
-        mdpPolicyPanel.updateData(policy);
+    void updatePolicy(MDPPolicy policy, PWMParticipantInfo participant) {
+        mdpPolicyPanel.updateData(policy,participant);
     }
-    
+
+    MDPModelParams getModelParams() {
+        int minCalories = controlPanel.minCaloriesSlider.getValue();
+        int maxCalories = controlPanel.maxCaloriesSlider.getValue();
+        int minPA       = controlPanel.minPASlider.getValue();
+        int maxPA       = controlPanel.maxPASlider.getValue();
+        
+        MDPModelParams modelParams = new MDPModelParams(minCalories, maxCalories, minPA/10.0, maxPA/10.0);
+        
+        return modelParams;
+    }
+
+   
 }

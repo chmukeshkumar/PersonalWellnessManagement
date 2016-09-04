@@ -51,7 +51,7 @@ public class PWMAction extends Action {
     /**
      *
      */
-    public double exerciseCalories;
+    public double exPAL;
     
     private Map stateSpace;
     private PWMParticipantInfo participantInfo;
@@ -62,13 +62,13 @@ public class PWMAction extends Action {
      * @param participant
      * @param name
      * @param nutritionCalories
-     * @param exerciseCalories
+     * @param exPAL
      */
-    public PWMAction(PWMParticipantInfo participant, String name, double nutritionCalories, double exerciseCalories)       { 
+    public PWMAction(PWMParticipantInfo participant, String name, double nutritionCalories, double exPAL)       { 
         super(name);
         this.participantInfo = participant;
         this.nutritionCalories = nutritionCalories;
-        this.exerciseCalories  = exerciseCalories;
+        this.exPAL  = exPAL;
     }
     
     /**
@@ -77,7 +77,7 @@ public class PWMAction extends Action {
      * @return
      */
     public double getPAL(PWMParticipantInfo info) { 
-        return exerciseCalories/info.getInitialWeight();
+        return this.exPAL;
     }
     
     /**
@@ -98,7 +98,7 @@ public class PWMAction extends Action {
         ArrayList<Double> setPA       = new ArrayList();
         for(int i=0;i<model.getTimeStep();i++) {
             setCalories.add(nutritionCalories);
-            setPA.add(getPAL(participantInfo));
+            setPA.add(this.exPAL);
         }
         model.setCurrentParameters(setCalories, setPA);
         

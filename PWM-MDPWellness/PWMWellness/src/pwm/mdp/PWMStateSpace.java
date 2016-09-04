@@ -29,6 +29,7 @@ package pwm.mdp;
 
 import java.util.HashMap;
 import java.util.Map;
+import pwm.mdp.solver.State;
 
 /**
  *
@@ -47,6 +48,10 @@ public class PWMStateSpace {
     Map<String,PWMState> getStateSpace() {
         return this.stateSpace;
     }
+    
+    public State getState(int weight) {
+        return this.stateSpace.get("+weight");
+    } 
     
     
 }

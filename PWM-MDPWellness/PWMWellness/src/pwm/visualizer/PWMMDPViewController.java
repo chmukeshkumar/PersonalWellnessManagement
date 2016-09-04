@@ -28,6 +28,9 @@ package pwm.visualizer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import pwm.mdp.MDPModelParams;
 import pwm.mdp.PWMMDPModel;
 import pwm.mdp.solver.MDPPolicy;
 import pwm.participant.PWMParticipantInfo;
@@ -42,17 +45,29 @@ public class PWMMDPViewController {
         this.mdpModel = mdpModel;
         this.mdpView  = mdpView;
         
-        mdpView.addActionListener(new MDPActionListener());
+        MDPViewListener listener = new MDPViewListener();
+        mdpView.addActionListener(listener);
+//        mdpView.addChangeListener(listener);
     }
     
-    class MDPActionListener implements ActionListener {
+    private void runMDPSimulation() {
+        PWMParticipantInfo participantInfo = mdpView.getParticipantInfo();
+        MDPModelParams     modelParams     = mdpView.getModelParams();    
+        mdpModel.runMDP(participantInfo, modelParams);
+        MDPPolicy policy = mdpModel.getPolicy();
+        mdpView.updatePolicy(policy,participantInfo);
+    }
+    
+    class MDPViewListener implements ActionListener, ChangeListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PWMParticipantInfo participantInfo = mdpView.getParticipantInfo();
-            mdpModel.runMDP(participantInfo, null);
-            MDPPolicy policy = mdpModel.getPolicy();
-            mdpView.updatePolicy(policy);
+            runMDPSimulation();
+        }
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            runMDPSimulation();
         }
     }
 }

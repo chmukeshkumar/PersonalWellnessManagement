@@ -40,14 +40,14 @@ class PWMActionSpace {
     Map<String, PWMAction> actionSpace = new HashMap<String, PWMAction>();
     
     Map generateActionSet(PWMParticipantInfo participant, double minNutritionCalories, double maxNutritionCalories, double nutritionCalorieStep,
-                                            double minExerciseCalories, double maxExerciseCalories, double exerciseCalorieStep) {
+                                            double minPAL, double maxPAL, double palStepSize) {
          
         for(double calories = minNutritionCalories; calories <= maxNutritionCalories; calories+=nutritionCalorieStep) {
-            for(double excalories = minExerciseCalories; excalories <= maxExerciseCalories; excalories+=exerciseCalorieStep) {
+            for(double exPal = minPAL; exPal <= maxPAL; exPal+=palStepSize) {
                 int nutritionCalories = (int) calories;
-                int exerciseCalories  = (int) excalories;
-                String actionName = ""+nutritionCalories+"-"+exerciseCalories;
-                PWMAction action = new PWMAction(participant, actionName, nutritionCalories, exerciseCalories);
+                
+                String actionName = ""+nutritionCalories+"-"+exPal;
+                PWMAction action = new PWMAction(participant, actionName, nutritionCalories, exPal);
                 actionSpace.put(actionName, action);
             }
         }

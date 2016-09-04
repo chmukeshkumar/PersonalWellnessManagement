@@ -7,6 +7,7 @@ package pwm.visualizer;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Map;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
@@ -24,6 +25,7 @@ import pwm.mdp.solver.Action;
 import pwm.mdp.solver.MDPPolicy;
 import pwm.mdp.solver.State;
 import pwm.mdp.solver.StateActionTuple;
+import pwm.participant.PWMParticipantInfo;
 
 /**
  *
@@ -35,17 +37,25 @@ class MDPPolicyPanel extends JPanel {
     DefaultCategoryDataset exerciseDataSet  = new DefaultCategoryDataset();
 
     public MDPPolicyPanel () {
+        super();
         JFreeChart jfreechart = createChart();
         this.add(new ChartPanel(jfreechart));
+        setPreferredSize(new Dimension(500,500));
+        this.revalidate();
+
     }
     
-    public void updateData(MDPPolicy policy) {
+    public void updateData(MDPPolicy policy,PWMParticipantInfo participant) {
          Map<String,StateActionTuple> stateActionTuples = policy.getStateActionTuples();
         
-        for(Map.Entry<String,StateActionTuple> entry : stateActionTuples.entrySet())
+        for(int w = participant.getInitialWeight(); w>= participant.getTargetWeight();w--)
         {
-            State s = entry.getValue().getState();
-            Action a = entry.getValue().getAction();
+            StateActionTuple entry = stateActionTuples.get(""+w);
+            if(entry == null ) {
+                continue;
+            }
+            State s = entry.getState();
+            Action a = entry.getAction();
             
             int weight = s.getValue();
             String actionName = a.getName();

@@ -27,6 +27,6 @@
 package pwm.visualizer;
 
 
-public class PWMPOMDPBeliefDistributionView {
+public class POMDPBeliefDistributionView extends JPanel{
     
 }

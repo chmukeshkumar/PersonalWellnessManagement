@@ -270,7 +270,7 @@ public class ThreeCompartmentModel implements FirstOrderDifferentialEquations {
         integrator.integrate(this, 0, y, (timeStep-1), y);
         double finalWeight = (y[0]+y[1]+y[2]+y[3]);
                     
-//        System.out.println(" initial Weight "+currentWeight+" "+calories+" "+pa + " final Weight" + finalWeight );
+//        System.out.println(" initial Weight "+initialWeight+" "+currentCalories.get(0)+" "+pal_final.get(0) + " final Weight" + finalWeight );
         return (int) finalWeight;
     }
 }

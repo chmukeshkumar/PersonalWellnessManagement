@@ -29,14 +29,12 @@ package pwm.mdp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import pwm.mdp.solver.MDPPolicy;
 import pwm.mdp.solver.MDPSolver;
 import pwm.mdp.solver.RewardFunction;
-import pwm.mdp.solver.State;
+import pwm.mdp.solver.StateActionTuple;
 import pwm.mdp.solver.TerminalFunction;
-import pwm.mdp.solver.TransitionProbability;
 import pwm.participant.PWMParticipantInfo;
 import pwm.visualizer.PWMMDPView;
 import pwm.visualizer.PWMMDPViewController;
@@ -59,7 +57,8 @@ public class PWMMDPModel {
         Map stateSpace  = pwmStateSpace.generateStateSpace(participantInfo.getInitialWeight(), participantInfo.getTargetWeight());
 //        
         PWMActionSpace pwmActionSpace = new  PWMActionSpace();
-        Map actionSpace = pwmActionSpace.generateActionSet(participantInfo, 500,4000,100,0,1000,50);
+        Map actionSpace = pwmActionSpace.generateActionSet(participantInfo, modelParams.getMinCalories(),modelParams.getMaxCalories(),250,
+                                                                            modelParams.getMinPALevel(),modelParams.getMaxPALevel(),0.1);
         pwmActionSpace.setStateSpace(stateSpace);
 //        
         RewardFunction rewardMapper = new PWMQuickLossRewardMapper(participantInfo);
@@ -68,10 +67,18 @@ public class PWMMDPModel {
         performReachabilityAnalysis(pwmStateSpace, pwmActionSpace);
 //        
         MDPSolver solver = new MDPSolver(stateSpace,actionSpace,rewardMapper,terminalMapper);
-        policy = solver.runVI(50,0.0001,0.01);
+        policy  = solver.runVI(50,0.0001,0.1);
+//        policy = new MDPPolicy();
+        
+//        Map<String,StateActionTuple> stateActionTuples = p.getStateActionTuples();
+//        for(int w = participantInfo.getInitialWeight(); w>= participantInfo.getTargetWeight(); w-- ) {
+//            System.out.println("W " + w);
+//            StateActionTuple sat = stateActionTuples.get(""+w);
+//            policy.addStateActionTuple(sat);
+//        }
 //        
 //        policy.print();
-//        policy.printStateValues();
+        policy.printStateValues();
     }
     
     public MDPPolicy getPolicy() {
