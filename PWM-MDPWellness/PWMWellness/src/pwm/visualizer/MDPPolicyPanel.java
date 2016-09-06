@@ -6,6 +6,7 @@
 package pwm.visualizer;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Map;
@@ -39,7 +40,8 @@ class MDPPolicyPanel extends JPanel {
     public MDPPolicyPanel () {
         super();
         JFreeChart jfreechart = createChart();
-        this.add(new ChartPanel(jfreechart));
+        this.setLayout(new BorderLayout());
+        this.add(new ChartPanel(jfreechart),BorderLayout.CENTER);
         setPreferredSize(new Dimension(500,500));
         this.revalidate();
 

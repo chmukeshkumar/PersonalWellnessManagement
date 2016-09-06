@@ -35,11 +35,11 @@ import pwm.participant.PWMParticipantInfo;
  *
  * @author mchippa
  */
-class PWMActionSpace {
+public class PWMActionSpace {
     
     Map<String, PWMAction> actionSpace = new HashMap<String, PWMAction>();
     
-    Map generateActionSet(PWMParticipantInfo participant, double minNutritionCalories, double maxNutritionCalories, double nutritionCalorieStep,
+    public Map generateActionSet(PWMParticipantInfo participant, double minNutritionCalories, double maxNutritionCalories, double nutritionCalorieStep,
                                             double minPAL, double maxPAL, double palStepSize) {
          
         for(double calories = minNutritionCalories; calories <= maxNutritionCalories; calories+=nutritionCalorieStep) {

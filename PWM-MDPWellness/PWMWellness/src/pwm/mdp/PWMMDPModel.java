@@ -30,9 +30,11 @@ package pwm.mdp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import pwm.mdp.solver.Action;
 import pwm.mdp.solver.MDPPolicy;
 import pwm.mdp.solver.MDPSolver;
 import pwm.mdp.solver.RewardFunction;
+import pwm.mdp.solver.State;
 import pwm.mdp.solver.StateActionTuple;
 import pwm.mdp.solver.TerminalFunction;
 import pwm.participant.PWMParticipantInfo;
@@ -47,7 +49,7 @@ public class PWMMDPModel {
     
     MDPPolicy policy;
     
-    PWMMDPModel(){
+    public PWMMDPModel(){
         
     }
     
@@ -78,11 +80,15 @@ public class PWMMDPModel {
 //        }
 //        
 //        policy.print();
-        policy.printStateValues();
+//        policy.printStateValues();
     }
     
     public MDPPolicy getPolicy() {
         return this.policy;
+    }
+    
+    public Action getAction(int initialWeight) {
+        return this.policy.getAction(new State(initialWeight));
     }
     
     
@@ -127,6 +133,8 @@ public class PWMMDPModel {
         }
     }
     
+    
+    
     /**
      *
      * @param args
@@ -136,4 +144,6 @@ public class PWMMDPModel {
         PWMMDPModel mdpModel = new PWMMDPModel();
         PWMMDPViewController viewController = new PWMMDPViewController(mdpModel, mdpView);
     }
+
+    
 }

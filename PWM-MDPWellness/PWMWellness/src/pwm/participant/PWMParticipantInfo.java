@@ -128,6 +128,10 @@ public class PWMParticipantInfo {
     public double getInitialPA() {
         return initialPA;
     }
+
+    public void setCurrentWeight(double currentWeight) {
+        this.initialWeight = (int)currentWeight;
+    }
     
     
 }

@@ -34,11 +34,11 @@ import java.util.ArrayList;
  */
 public class PolicyVector {
     
-    int actionNumber;
+    IntensityLevel intensityLevel;
     ArrayList<Double> vector = new ArrayList();
     
-    PolicyVector(int actionNumber, ArrayList<Double> vector) {
-        this.actionNumber = actionNumber;
+    PolicyVector(IntensityLevel intensityLevel, ArrayList<Double> vector) {
+        this.intensityLevel = intensityLevel;
         this.vector.addAll(vector);
     }
     
@@ -46,8 +46,8 @@ public class PolicyVector {
      *
      * @return
      */
-    public int getActionNumber() {
-        return this.actionNumber;
+    public IntensityLevel getActionIntensity() {
+        return this.intensityLevel;
     }
     
     /**

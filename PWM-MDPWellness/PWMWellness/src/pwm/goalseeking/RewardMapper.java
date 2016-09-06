@@ -26,18 +26,32 @@
  */
 package pwm.goalseeking;
 
+import pwm.participant.PWMParticipantInfo;
+
 /**
  *
  * @author munna
  */
-public class Cost {
-    
-    double value;
-    Cost (double value) {
-        this.value = value;
+public class RewardMapper {
+
+    double getReward(PWMParticipantInfo participant, GoalSeekingAction action, Consequence c) {
+        int newWeight = (int)c.getValue();
+        int oldWeight = participant.getInitialWeight();
+        
+        double difference = oldWeight - newWeight;
+        
+        double reward = 0;
+        
+        if(difference < 0 ) { // ended up actually gaining weight 
+            reward = 0;
+        }
+        else {
+            double weightLostPerWeek = difference/3.0;
+            reward = 100 - Math.abs(weightLostPerWeek - 1)*10 ;
+        }
+        
+        return reward;
     }
     
-    public double getCost() {
-        return this.value;
-    }
+    
 }

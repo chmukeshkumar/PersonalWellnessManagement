@@ -21,13 +21,13 @@ public class PWMMDPView extends JFrame{
     
     ParticipantInfoPanel participantInfoPanel;
     MDPPolicyPanel mdpPolicyPanel;
-    ModelControlPanel controlPanel;
+    PWMModelControlPanel controlPanel;
     
     public PWMMDPView() {
         this.setTitle("Personal Wellness Management - MDP Formulation");
         this.participantInfoPanel = new ParticipantInfoPanel();
         this.mdpPolicyPanel = new MDPPolicyPanel();
-        this.controlPanel   = new ModelControlPanel();
+        this.controlPanel   = new PWMModelControlPanel();
         
         this.setLayout(new BorderLayout());
         this.add(this.participantInfoPanel,BorderLayout.WEST);

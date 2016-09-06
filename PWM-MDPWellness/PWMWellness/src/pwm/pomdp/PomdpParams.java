@@ -69,12 +69,12 @@ public class PomdpParams {
         return observationProbability[fromState][observation][action];
     }
 
-    void updateDistribution(int actionNumber, int observationNumber) {
+    void updateDistribution(IntensityLevel actionIntensity, Observation observation) {
         double newBeliefDistribution[] = new double[beliefDistribution.length];
         for(int stateNumber=0;stateNumber<beliefDistribution.length;stateNumber++) {
-            double ob1 = getObservationProbability(stateNumber, actionNumber, observationNumber);
-            double stateSum = getTransitionSum(actionNumber, stateNumber);
-            double normalization = getNormalization(actionNumber, observationNumber);
+            double ob1 = getObservationProbability(stateNumber, actionIntensity.getValue(), observation.getValue());
+            double stateSum = getTransitionSum(actionIntensity.getValue(), stateNumber);
+            double normalization = getNormalization(actionIntensity.getValue(), observation.getValue());
             
             newBeliefDistribution[stateNumber] = ob1 * stateSum / normalization;
         }

@@ -26,7 +26,49 @@
  */
 package pwm.visualizer;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
+import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
-public class POMDPBeliefDistributionView extends JPanel{
+
+public class POMDPBeliefDistributionView extends JPanel {
+    private DefaultCategoryDataset beliefStates;
+    
+    POMDPBeliefDistributionView(String title) {
+        ChartPanel Panel = getChartPanel(title);
+        this.setLayout(new BorderLayout());
+        this.add(Panel,BorderLayout.CENTER);
+        update(new double[]{0.2,0.2,0.2,0.2,0.2});
+    }
+    
+     private ChartPanel getChartPanel(String title) {
+        beliefStates = new DefaultCategoryDataset();
+        JFreeChart chart = ChartFactory.createBarChart( title ,"","Probability",beliefStates, PlotOrientation.VERTICAL,true,true,false);
+        chart.removeLegend();
+        
+        CategoryPlot xyplot = (CategoryPlot) chart.getCategoryPlot();
+        
+        ChartPanel chartPanel = new ChartPanel(chart, true, true, true, true, true);
+        chartPanel.setMouseWheelEnabled(true);
+        
+        xyplot.getDomainAxis().setLabelFont(new Font("Ariel",Font.BOLD,18));
+        return chartPanel;
+    }
+    
+    public void update(double[] newNutritionDistribution) {
+        
+        beliefStates.addValue(newNutritionDistribution[0],"","Pre-contemplation");
+        beliefStates.addValue(newNutritionDistribution[1],"","Contemplation");
+        beliefStates.addValue(newNutritionDistribution[2],"","Preparation");
+        beliefStates.addValue(newNutritionDistribution[3],"","Action");
+        beliefStates.addValue(newNutritionDistribution[4],"","Maintenance");
+        
+    }
     
 }

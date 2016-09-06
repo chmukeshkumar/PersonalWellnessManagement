@@ -89,6 +89,7 @@ class ParticipantInfoPanel extends JPanel {
         
         c.gridy++; c.gridx = 0;
         this.simulateButton = new MyJButton("Simulate");
+        simulateButton.setName("simulate");
         this.add(simulateButton,c);
     }
     
@@ -116,6 +117,10 @@ class ParticipantInfoPanel extends JPanel {
        }
        
        return null;
+    }
+
+    void setInitialWeight(int newWeight) {
+        this.currentWeight.setText(newWeight+"");
     }
     
 }

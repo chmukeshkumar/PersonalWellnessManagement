@@ -31,11 +31,23 @@ package pwm.goalseeking;
  * @author munna
  */
 public class Consequence {
-    private GoalSeekingAction action;
     private double value;
+    private double reward;
     
-    public Consequence(GoalSeekingAction action, double value) {
-        this.action = action;
+    public Consequence(double value) {
         this.value  = value;
+        this.reward = reward;
+    }
+    
+    public double getValue() {
+        return this.value;
+    }
+    
+    public void setReward(double reward) {
+        this.reward = reward;
+    }
+    
+    public double getReward() {
+        return this.reward;
     }
 }

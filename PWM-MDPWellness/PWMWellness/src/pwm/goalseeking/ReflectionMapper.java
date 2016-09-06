@@ -26,16 +26,43 @@
  */
 package pwm.goalseeking;
 
+import java.util.ArrayList;
 import java.util.List;
+import pwm.participant.PWMParticipantInfo;
+import pwm.weightdynamics.ThreeCompartmentModel;
 
 /**
  *
  * @author munna
  */
-public interface ReflectionMapper {
+public class ReflectionMapper {
     
-    public Consequence estimateConsequence(GoalSeekingAction action);
+    ReflectionMapper() {
+        
+    }
     
-    public List<Consequence> estimateConsequence(List<GoalSeekingAction> actions);
+    public Consequence estimateConsequence(PWMParticipantInfo participantInfo, GoalSeekingAction action) {
+        
+         ThreeCompartmentModel model = new ThreeCompartmentModel(participantInfo.getInitialWeight(),
+                                                                participantInfo.getHeight(),
+                                                                participantInfo.getAge(),
+                                                                participantInfo.getGender(),
+                                                                participantInfo.getInitialPA()
+                                                               );
+        model.setTimeStep(21);
+        
+        ArrayList<Double> setCalories = new ArrayList();
+        ArrayList<Double> setPA       = new ArrayList();
+        for(int i=0;i<model.getTimeStep();i++) {
+            setCalories.add(action.nutritionCalories);
+            setPA.add(action.exPAL);
+        }
+        model.setCurrentParameters(setCalories, setPA);
+        
+        double finalWeight =  model.getFinalWeight();
+        
+        Consequence c = new Consequence(finalWeight);
+        return c;
+    }
     
 }

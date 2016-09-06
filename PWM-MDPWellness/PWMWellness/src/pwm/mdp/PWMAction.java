@@ -85,7 +85,7 @@ public class PWMAction extends Action {
      * @param currentWeight
      * @return
      */
-    protected int estimateActionConsequence(int currentWeight) {
+    public int estimateActionConsequence(int currentWeight) {
         ThreeCompartmentModel model = new ThreeCompartmentModel(currentWeight,
                                                                 participantInfo.getHeight(),
                                                                 participantInfo.getAge(),

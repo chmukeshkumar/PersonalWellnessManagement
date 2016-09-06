@@ -17,14 +17,14 @@ import javax.swing.event.ChangeListener;
  *
  * @author cesl
  */
-class ModelControlPanel extends JPanel{
+class PWMModelControlPanel extends JPanel{
 
     MyJSlider minCaloriesSlider;
     MyJSlider maxCaloriesSlider;
     MyJSlider minPASlider;
     MyJSlider maxPASlider;
     
-    public ModelControlPanel() {
+    public PWMModelControlPanel() {
         super();
         this.setLayout(new GridLayout(2, 2));
         minCaloriesSlider = new MyJSlider(JSlider.HORIZONTAL,500,5000, 500);
@@ -86,6 +86,23 @@ class ModelControlPanel extends JPanel{
         this.maxCaloriesSlider.addChangeListener(listener);
         this.minPASlider.addChangeListener(listener);
         this.maxPASlider.addChangeListener(listener);
+    }
+    
+    public void setSliderPositions(int minCalories, int maxCalories, double minPAL, double maxPAL) {
+        this.minCaloriesSlider.setValue(minCalories);
+        this.maxCaloriesSlider.setValue(maxCalories);
+        this.minPASlider.setValue((int)(minPAL*10));
+        this.maxPASlider.setValue((int)(maxPAL*10));
+    }
+
+    double[] getSliderPositions() {
+        double[] sliderPositions = new double[4];
+        sliderPositions[0] = minCaloriesSlider.getValue();
+        sliderPositions[1] = maxCaloriesSlider.getValue();
+        sliderPositions[2] = minPASlider.getValue();
+        sliderPositions[3] = maxPASlider.getValue();
+        
+        return sliderPositions;
     }
     
     

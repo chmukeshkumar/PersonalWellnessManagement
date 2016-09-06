@@ -26,7 +26,74 @@
  */
 package pwm.visualizer;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import pwm.mdp.solver.Action;
+import pwm.pomdp.IntensityLevel;
+import pwm.pomdp.Observation;
+import pwm.pomdp.PWMPOMDPModel;
+
 
 public class PWMPOMDPViewController {
+    
+    private PWMPOMDPModel model;
+    private PWMPOMDPView view;
+    
+    public PWMPOMDPViewController(PWMPOMDPModel pomdpModel, PWMPOMDPView view) {
+        this.model = pomdpModel;
+        this.view = view;
+        
+        POMDPActionListener listener = new POMDPActionListener();
+        view.addActionListener(listener);
+    }
+    
+    private void runSimulation(Observation nutritionObservation, Observation exerciseObservation) {
+        model.updateDistributions(nutritionObservation, exerciseObservation);
+        Action selectedAction = model.simulateOneStep(view.getParticipantInfo());
+        int calories = Integer.valueOf(selectedAction.getName().split("-")[0]);
+        double pal   = Double.valueOf(selectedAction.getName().split("-")[1]);
+        IntensityLevel nutritionIntensityLevel = model.getSelectedNutritionIntensityLevel();
+        IntensityLevel exerciseIntensityLevel  = model.getSelectedNutritionIntensityLevel();
+        
+        view.updateDistributions(model.getNutritionDistribution(), model.getExerciseDistribution());
+        view.setSelectedAction(calories,nutritionIntensityLevel, pal, exerciseIntensityLevel);
+    }
+    
+    class POMDPActionListener implements ActionListener, ChangeListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            MyJButton clickedButton = (MyJButton)e.getSource();
+            String name = clickedButton.getName();
+            Observation newNutritionObservation = null;
+            Observation newExerciseObservation = null;
+            switch(name) {
+                case "nut-adh":
+                    newNutritionObservation = Observation.ADHERED;
+                    break;
+                case "nut-not-adh":
+                    newNutritionObservation = Observation.NOTADHERED;
+                    break;
+                case "ex-adh":
+                    newExerciseObservation = Observation.ADHERED;
+                    break;
+                case "ex-not-adh":
+                    newExerciseObservation = Observation.NOTADHERED;
+                    break;
+                default:
+                    break;
+            }
+            
+            runSimulation(newNutritionObservation, newExerciseObservation);
+        }
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            
+        }
+        
+    }
     
 }

@@ -3,24 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/MDPSolver.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMStateSpace.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMState.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/Action.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMTerminalStateMapper.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/TransitionProbability.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/ActionTransitions.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMQuickLossRewardMapper.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/weightdynamics/ThreeCompartmentModel.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/RewardFunction.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/StateActionTuple.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMAction.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMActionSpace.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/TerminalFunction.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/PWMMDPWellness.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/participant/PWMParticipantInfo.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/State.java</file>
-            <file>file:/C:/Users/mchippa/school%20stuff/code/PWM-MDPWellness/PWM-MDPWellness/src/pwm/mdp/solver/MDPPolicy.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/solver/MDPSolver.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMTerminalStateMapper.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/MDPPolicyPanel.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/MyJSlider.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMMDPModel.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMState.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/solver/MDPPolicy.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/solver/Action.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/PWMMDPView.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/PWMMDPViewController.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/ModelControlPanel.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMStateSpace.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/pomdp/PomdpPolicyEvaluator.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/PWMPOMDPViewController.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/weightdynamics/ThreeCompartmentModel.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/POMDPBeliefDistributionView.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/solver/StateActionTuple.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/MDPModelParams.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/visualizer/ParticipantInfoPanel.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMQuickLossRewardMapper.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMAction.java</file>
+            <file>file:/C:/Users/cesl/Documents/GitHub/PersonalWellnessManagement/PWM-MDPWellness/PWMWellness/src/pwm/mdp/PWMActionSpace.java</file>
         </group>
     </open-files>
 </project-private>
